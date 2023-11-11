@@ -1,4 +1,7 @@
+package lessonFour;
+
 import com.codeborne.selenide.DragAndDropOptions;
+import lessonFour.BaseTest;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
