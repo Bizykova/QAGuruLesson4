@@ -7,9 +7,6 @@ repositories {
     mavenCentral()
 }
 
-//java {
-//    toolchain(languageVersion = JavaLanguageVersion.of(17))
-//}
 
 compileTestJava {
     options.encoding = 'UTF-8'
@@ -19,9 +16,6 @@ dependencies {
     testImplementation (
             "com.codeborne:selenide:7.0.0",
             "org.junit.jupiter:junit-jupiter:5.9.3")
-
-//    testImplementation("org.junit.jupiter:jupiter-api:5:9:1")
-//    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5:9:1")
 }
 
 

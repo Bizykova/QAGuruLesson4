@@ -1,29 +1,30 @@
-package lessonSeven;
+package lesson_seven;
 
-import lessonSeven.component.CalendarComponent;
-import lessonSeven.component.CheckResult;
+import lesson_seven.component.CalendarComponent;
+import lesson_seven.component.CheckResult;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selenide.$;
 
-public class JunitTest extends PageForm {
+public class TestPracticeForm extends BaseTest {
     PageForm pageForm = new PageForm();
     CalendarComponent component = new CalendarComponent();
     CheckResult checkResult = new CheckResult();
 
     @Test
-    public void form() {
+    public void formTest() {
         pageForm.setFirstName("София")
                 .setLastName("Прекрасная")
                 .setUserEmail("QA_duru@googl.com")
                 .clickGender()
                 .setUserNumber("7919345779")
                 .clickDateOfBirthInput();
-        component.setCalendarComponent("April", "2002", "1");
+        component.setCalendarComponent("April", "2002");
         pageForm.setSubjects("Computer Science")
                 .setHobbies("Sports")
                 .setPictures("cupcake.png")
                 .setCurrentAddress("Москва, Скатертный переулок 16")
+                .execute()
                 .clickState()
                 .clickCity()
                 .clickSubmit();
@@ -42,15 +43,15 @@ public class JunitTest extends PageForm {
     }
 
     @Test
-    public void formWithEmptyFields() {
+    public void formWithEmptyFieldsTest() {
         pageForm.setFirstName("София")
                 .setLastName("Прекрасная")
                 .clickGender()
                 .setUserNumber("7919345779")
                 .clickDateOfBirthInput();
-        component.setCalendarComponent("April", "2002", "1");
-
-        pageForm.clickSubmit();
+        component.setCalendarComponent("April", "2002");
+        pageForm.execute()
+                .clickSubmit();
         //assert
         checkResult.checkResult("Student Name", "София Прекрасная")
                 .checkResult("Gender", "Female")
@@ -59,15 +60,15 @@ public class JunitTest extends PageForm {
 
     }
     @Test
-    public void formPhoneBorderRed() {
+    public void formPhoneBorderRedTest() {
         pageForm.setFirstName("София")
                 .setLastName("Прекрасная")
                 .clickGender()
                 .setUserNumber("791934")
                 .clickDateOfBirthInput();
-        component.setCalendarComponent("April", "2002", "1");
-
-        pageForm.clickSubmit();
+        component.setCalendarComponent("April", "2002");
+        pageForm.execute()
+                .clickSubmit();
         //assert
         $("#userNumber").shouldHave(cssValue("border-color","rgb(220, 53, 69)"));
 

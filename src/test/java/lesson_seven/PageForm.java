@@ -1,19 +1,17 @@
-package lessonSeven;
+package lesson_seven;
 
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class PageForm extends BaseTest {
+public class PageForm {
     private SelenideElement firstName = $("#firstName");
     private SelenideElement lastName = $("#lastName");
     private SelenideElement userEmail = $("#userEmail");
     private SelenideElement gender = $("#genterWrapper").$(byText("Female"));
     private SelenideElement userNumber = $("#userNumber");
     private SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
-    private SelenideElement datepickerMonth = $(".react-datepicker__month-select");
-    private SelenideElement datepickerDey = $(".react-datepicker__day--001:not(.react-datepicker__day--outside-month)");
-    private SelenideElement datepickerYear = $(".react-datepicker__year-select");
     private SelenideElement subjects = $("#subjectsInput");
     private SelenideElement hobbies = $(".custom-control.custom-checkbox.custom-control-inline");
     private SelenideElement pictures = $("#uploadPicture");
@@ -23,7 +21,6 @@ public class PageForm extends BaseTest {
     private SelenideElement optionMenuNCR = $(byText("NCR"));
     private SelenideElement cityGurgaon = $(byText("Gurgaon"));
     private SelenideElement submit = $("#submit");
-
 
     public PageForm setFirstName(String name) {
         firstName.setValue(name);
@@ -88,9 +85,13 @@ public class PageForm extends BaseTest {
         return this;
     }
 
-
     public PageForm clickSubmit() {
         submit.click();
+        return this;
+    }
+    public PageForm execute(){
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         return this;
     }
 

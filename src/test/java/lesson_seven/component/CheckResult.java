@@ -1,6 +1,4 @@
-package lessonSeven.component;
-
-import lessonSeven.PageForm;
+package lesson_seven.component;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
