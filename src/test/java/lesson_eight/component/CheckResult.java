@@ -1,4 +1,4 @@
-package lesson_seven.component;
+package lesson_eight.component;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;

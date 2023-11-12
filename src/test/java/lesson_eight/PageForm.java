@@ -1,4 +1,4 @@
-package lesson_seven;
+package lesson_eight;
 
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selectors.byText;
@@ -9,11 +9,11 @@ public class PageForm {
     private SelenideElement firstName = $("#firstName");
     private SelenideElement lastName = $("#lastName");
     private SelenideElement userEmail = $("#userEmail");
-    private SelenideElement gender = $("#genterWrapper").$(byText("Female"));
+    private SelenideElement gender = $("#genterWrapper");
     private SelenideElement userNumber = $("#userNumber");
     private SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
     private SelenideElement subjects = $("#subjectsInput");
-    private SelenideElement hobbies = $(".custom-control.custom-checkbox.custom-control-inline");
+    private SelenideElement hobbies = $("#hobbiesWrapper");
     private SelenideElement pictures = $("#uploadPicture");
     private SelenideElement currentAddress = $("#currentAddress");
     private SelenideElement state = $("#state");
@@ -37,8 +37,8 @@ public class PageForm {
         return this;
     }
 
-    public PageForm clickGender() {
-        gender.click();
+    public PageForm clickGender(String value) {
+        gender.$(byText(value)).click();
         return this;
     }
 
@@ -52,14 +52,14 @@ public class PageForm {
         return this;
     }
 
-    public PageForm setSubjects(String subjects) {
+    public PageForm setSubjects(String value) {
         this.subjects.click();
-        this.subjects.setValue(subjects).hover().pressEnter();
+        this.subjects.setValue(value).hover().pressEnter();
         return this;
     }
 
-    public PageForm setHobbies(String hobbiesText) {
-        this.hobbies.$(byText(hobbiesText)).click();
+    public PageForm setHobbies(String value) {
+        this.hobbies.$(byText(value)).click();
         return this;
     }
 

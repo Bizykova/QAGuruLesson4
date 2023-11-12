@@ -1,8 +1,8 @@
-package lesson_seven;
+package lesson_eight;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeEach;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
