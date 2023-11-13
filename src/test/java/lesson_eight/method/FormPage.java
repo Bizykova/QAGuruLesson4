@@ -1,11 +1,11 @@
-package lesson_eight;
+package lesson_eight.method;
 
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class PageForm {
+public class FormPage {
     private SelenideElement firstName = $("#firstName");
     private SelenideElement lastName = $("#lastName");
     private SelenideElement userEmail = $("#userEmail");
@@ -13,83 +13,81 @@ public class PageForm {
     private SelenideElement userNumber = $("#userNumber");
     private SelenideElement dateOfBirthInput = $("#dateOfBirthInput");
     private SelenideElement subjects = $("#subjectsInput");
-    private SelenideElement hobbies = $("#hobbiesWrapper");
+    private SelenideElement hobbi = $("#hobbiesWrapper");
     private SelenideElement pictures = $("#uploadPicture");
     private SelenideElement currentAddress = $("#currentAddress");
-    private SelenideElement state = $("#state");
+    private SelenideElement states = $("#state");
     private SelenideElement city = $("#city");
-    private SelenideElement optionMenuNCR = $(byText("NCR"));
-    private SelenideElement cityGurgaon = $(byText("Gurgaon"));
     private SelenideElement submit = $("#submit");
 
-    public PageForm setFirstName(String name) {
+    public FormPage setFirstName(String name) {
         firstName.setValue(name);
         return this;
     }
 
-    public PageForm setLastName(String lastNam) {
+    public FormPage setLastName(String lastNam) {
         lastName.setValue(lastNam);
         return this;
     }
 
-    public PageForm setUserEmail(String userEm) {
+    public FormPage setUserEmail(String userEm) {
         userEmail.setValue(userEm);
         return this;
     }
 
-    public PageForm clickGender(String value) {
+    public FormPage clickGender(String value) {
         gender.$(byText(value)).click();
         return this;
     }
 
-    public PageForm setUserNumber(String userNumber) {
-        this.userNumber.setValue(userNumber);
+    public FormPage setUserNumber(String value) {
+        userNumber.setValue(value);
         return this;
     }
 
-    public PageForm clickDateOfBirthInput() {
+    public FormPage clickDateOfBirthInput() {
         dateOfBirthInput.click();
         return this;
     }
 
-    public PageForm setSubjects(String value) {
-        this.subjects.click();
-        this.subjects.setValue(value).hover().pressEnter();
+    public FormPage setSubjects(String value) {
+        subjects.click();
+        subjects.setValue(value).hover().pressEnter();
         return this;
     }
 
-    public PageForm setHobbies(String value) {
-        this.hobbies.$(byText(value)).click();
+    public FormPage setHobbies(String value) {
+        hobbi.$(byText(value)).click();
         return this;
     }
 
-    public PageForm setPictures(String fileName) {
+    public FormPage setPictures(String fileName) {
         pictures.uploadFromClasspath(fileName);
         return this;
     }
 
-    public PageForm setCurrentAddress(String address) {
+    public FormPage setCurrentAddress(String address) {
         currentAddress.setValue(address);
         return this;
     }
 
-    public PageForm clickState() {
-        state.click();
-        optionMenuNCR.click();
+    public FormPage clickState(String value) {
+        states.click();
+        $(byText(value)).click();
         return this;
     }
 
-    public PageForm clickCity() {
+    public FormPage clickCity(String value) {
         city.click();
-        cityGurgaon.click();
+        $(byText(value)).click();
         return this;
     }
 
-    public PageForm clickSubmit() {
+    public FormPage clickSubmit() {
         submit.click();
         return this;
     }
-    public PageForm execute(){
+    public FormPage execute(){
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;

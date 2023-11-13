@@ -3,85 +3,78 @@ package lesson_eight;
 import lesson_eight.component.CalendarComponent;
 import lesson_eight.component.CheckResult;
 import lesson_eight.faker.FakerBox;
+import lesson_eight.method.FormPage;
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selenide.$;
-import static lesson_eight.faker.RandomString.*;
 
-public class TestPracticeForm extends BaseTest {
-    PageForm pageForm = new PageForm();
+
+public class FormPracticeTest extends BaseTest {
+    FormPage pageForm = new FormPage();
     CalendarComponent component = new CalendarComponent();
     CheckResult checkResult = new CheckResult();
     FakerBox fakerBox = new FakerBox();
-    String phone = getRandomPhone();
-    String month = getRandomMonth();
-    String year = getRandomYear();
-    String gender = getRandomGender();
-    String hobbies = getRandomHobbies();
-    String subjects= getRandomSubjects();
     String fileName = "cupcake.png";
-    String city = "State and City";
-    String gurgaon ="NCR Gurgaon";
-    String phoneNumberIsIncorrect = "3456789";
+
+
     @Test
     public void formTest() {
         //act
         pageForm.setFirstName(fakerBox.firstName)
                 .setLastName(fakerBox.lastName)
                 .setUserEmail(fakerBox.userEmai)
-                .clickGender(gender)
-                .setUserNumber(phone)
+                .clickGender(fakerBox.gender)
+                .setUserNumber(fakerBox.phone)
                 .clickDateOfBirthInput();
-        component.setCalendarComponent(month,year);
-        pageForm.setSubjects(subjects)
-                .setHobbies(hobbies)
+        component.setCalendarComponent(fakerBox.month,fakerBox.year);
+        pageForm.setSubjects(fakerBox.subjects)
+                .setHobbies(fakerBox.hobbies)
                 .setPictures(fileName)
                 .setCurrentAddress(fakerBox.streetAddress)
                 .execute()
-                .clickState()
-                .clickCity()
+                .clickState(fakerBox.state)
+                .clickCity(fakerBox.city)
                 .clickSubmit();
         //assert
         checkResult.checkResult("Student Name", fakerBox.firstName+" "+fakerBox.lastName)
                 .checkResult("Student Email", fakerBox.userEmai)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", phone)
-                .checkResult("Date of Birth", "01 "+ month+ ","+year)
-                .checkResult("Subjects",subjects)
-                .checkResult("Hobbies", hobbies)
+                .checkResult("Gender", fakerBox.gender)
+                .checkResult("Mobile", fakerBox.phone)
+                .checkResult("Date of Birth", "01 "+fakerBox.month+ ","+fakerBox.year)
+                .checkResult("Subjects",fakerBox.subjects)
+                .checkResult("Hobbies",fakerBox.hobbies)
                 .checkResult("Picture", fileName)
                 .checkResult("Address", fakerBox.streetAddress)
-                .checkResult(city, gurgaon);
+                .checkResult("State and City",fakerBox.state+ " "+fakerBox.city);
 
     }
 
     @Test
     public void formWithEmptyFieldsTest() {
-        String gender = getRandomGender();
         pageForm.setFirstName(fakerBox.firstName)
                 .setLastName(fakerBox.lastName)
-                .clickGender(gender)
-                .setUserNumber(phone)
+                .clickGender(fakerBox.gender)
+                .setUserNumber(fakerBox.phone)
                 .clickDateOfBirthInput();
-        component.setCalendarComponent(month,year);
+        component.setCalendarComponent(fakerBox.month,fakerBox.year);
         pageForm.execute()
                 .clickSubmit();
         //assert
         checkResult.checkResult("Student Name", fakerBox.firstName+" "+fakerBox.lastName)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", phone)
-                .checkResult("Date of Birth","01 "+ month+ ","+year);
+                .checkResult("Gender", fakerBox.gender)
+                .checkResult("Mobile", fakerBox.phone)
+                .checkResult("Date of Birth","01 "+ fakerBox.month+ ","+fakerBox.year);
 
     }
     @Test
     public void formPhoneBorderRedTest() {
-        String gender = getRandomGender();
+        String phoneNumberIsIncorrect = "3456789";
         pageForm.setFirstName(fakerBox.firstName)
                 .setLastName(fakerBox.lastName)
-                .clickGender(gender)
+                .clickGender(fakerBox.gender)
                 .setUserNumber(phoneNumberIsIncorrect)
                 .clickDateOfBirthInput();
-        component.setCalendarComponent(month,year);
+        component.setCalendarComponent(fakerBox.month,fakerBox.year);
         pageForm.execute()
                 .clickSubmit();
         //assert

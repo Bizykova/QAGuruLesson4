@@ -12,7 +12,6 @@ public class BaseTest {
         Configuration.pageLoadStrategy = "eager";
         //Configuration.holdBrowserOpen = true;
         Configuration.browserSize = "1920*1080";
-        //Configuration.timeout = 10000;
         open("https://demoqa.com/automation-practice-form");
     }
 }
