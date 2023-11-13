@@ -33,7 +33,7 @@ public class FormPracticeTest extends BaseTest {
                 .setCurrentAddress(fakerBox.streetAddress)
                 .execute()
                 .clickState(fakerBox.state)
-                .clickCity(fakerBox.city)
+                .clickCity(fakerBox.getCity(fakerBox.state))
                 .clickSubmit();
         //assert
         checkResult.checkResult("Student Name", fakerBox.firstName+" "+fakerBox.lastName)
@@ -45,8 +45,7 @@ public class FormPracticeTest extends BaseTest {
                 .checkResult("Hobbies",fakerBox.hobbies)
                 .checkResult("Picture", fileName)
                 .checkResult("Address", fakerBox.streetAddress)
-                .checkResult("State and City",fakerBox.state+ " "+fakerBox.city);
-
+                .checkResult("State and City",fakerBox.state+ " "+fakerBox.getCity(fakerBox.state));
     }
 
     @Test

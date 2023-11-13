@@ -1,6 +1,8 @@
 package lesson_eight.method;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.conditions.PseudoElementPropertyWithValue;
+
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -77,6 +79,7 @@ public class FormPage {
         return this;
     }
 
+
     public FormPage clickCity(String value) {
         city.click();
         $(byText(value)).click();
@@ -92,5 +95,6 @@ public class FormPage {
         executeJavaScript("$('footer').remove()");
         return this;
     }
+
 
 }
